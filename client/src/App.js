@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Gallery } from "react-grid-gallery";
 import "./App.css";
 import ImageUpload from "./components/ImageUpload";
+import Header from "./components/Header";
+import { Row, Col, Container } from "react-bootstrap";
 
 // import ImageGallery from "./components/ImageGallery";
 // import img1 from "./assets/img1.jpg";
@@ -67,6 +69,7 @@ function App() {
     };
 
     const handleImageUpload = (image, count) => {
+        console.log(image);
         let nextImages = [...images];
         while (count--) {
             nextImages = nextImages.concat([
@@ -92,16 +95,24 @@ function App() {
 
     return (
         <div className="App">
-            <h1>The Cantcer Gallery</h1>
+            <Header />
             {/* <div className="p-t-1 p-b-1">
                 <button onClick={handleSelectAllClick}>
                     {hasSelected ? "Clear selection" : "Select all"}
                 </button>
             </div> */}
-            <h2>Upload</h2>
-            <ImageUpload onImageUpload={handleImageUpload} />
-            <h2>Gallery</h2>
-            <Gallery images={images} onSelect={handleSelect} />
+            <Container>
+                <Row>
+                    <Col>
+                        <h2>Upload</h2>
+                        <ImageUpload onImageUpload={handleImageUpload} />
+                    </Col>
+                    <Col>
+                        <h2>Gallery</h2>
+                        <Gallery images={images} onSelect={handleSelect} />
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
