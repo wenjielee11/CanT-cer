@@ -31,7 +31,7 @@ const Upload = ({ onUpload }) => {
         if (document != null) {
             setShowModal(true);
             let response = await axios.post(
-                "https://plated-hearth-404908.uc.r.appspot.com/upload",
+                "http://localhost:3000/upload",
                 document
             );
             console.log("response", response);
