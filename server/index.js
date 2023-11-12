@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.static("./build"));
 const port = process.env.PORT || 2023;
+const API_URL = "http://8f89-34-125-191-15.ngrok-free.app/";
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(`${process.cwd()}` + "/build/index.html"));
@@ -20,10 +21,7 @@ async function generateImage(buffer, slider, endpoint) {
     // Generates 6 images
     //  curl -H "Content-Type: application/json" -d '{ "image":"89898998989AAA", "slider": "0.1"}' http://004d-34-125-191-15.ngrok-free.app/6969
     const request = { image: buffer, slider: slider };
-    const resp = await axios.post(
-        `http://8f89-34-125-191-15.ngrok-free.app/${endpoint}`,
-        request
-    );
+    const resp = await axios.post(`${API_URL}${endpoint}`, request);
     return resp;
 }
 
