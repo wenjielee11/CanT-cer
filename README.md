@@ -1,14 +1,18 @@
 # CANT-cer
 
-Helping balance the skin tone diversity in skin cancer
+Pioneering Skin Cancer Data Generation to Combat AI Bias
 
 # Inspiration
 
 As AI researchers, we recognize the critical role of balanced datasets in developing impartial models. Yet, in the realm of medical datasets, especially those concerning skin cancer, there exists a significant imbalance favoring light-skinned individuals. This skew in data not only undermines the accuracy of AI-driven diagnoses but also disproportionately impacts the health outcomes of people of color. Our work is dedicated to rectifying this disparity, ensuring equitable and accurate medical diagnosis across all skin tones.
 
+![image](https://media.discordapp.net/attachments/1172946769223618682/1173320320166412339/image.png?ex=656386b3&is=655111b3&hm=7202619060c166734ac00d4601227657dc373f6fd9ff4ddce17fcb0d24344a86&=&width=2160&height=422)
+
 # What it does
 
 Our website presents a groundbreaking solution for skin lesion analysis. It accepts any image of a skin lesion and, utilizing advanced style transfer models, transforms it into various skin tones as per user preference. Additionally, we've integrated a feature that allows users to effortlessly export these results into a comprehensive dataset. This dataset not only includes the transformed image but also provides a detailed segmentation mask of the lesion and a classification of its type. Our one-click dataset compilation feature streamlines data usage and access, making it exceptionally user-friendly and efficient for diverse applications.
+
+![image](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/002/668/292/datas/gallery.jpg)
 
 # How we built it
 
