@@ -2,9 +2,19 @@
 import { useState } from "react";
 import { Gallery } from "react-grid-gallery";
 import "./App.css";
-import ImageUpload from "./components/ImageUpload";
+import Upload from "./components/Upload";
 import Header from "./components/Header";
 import { Row, Col, Container } from "react-bootstrap";
+import BarChart from "./components/BarChart";
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from "chart.js";
 
 const IMAGES = [
     // {
@@ -79,9 +89,31 @@ const IMAGES = [
     // },
 ];
 
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+const dummyScore = (n) => {
+    // return an object containing n keys, each key is a float, all of the float value sums to 1
+    const scores = {};
+    for (let i = 0; i < n; i++) {
+        scores[i] = Math.random();
+    }
+    const sum = Object.values(scores).reduce((a, b) => a + b, 0);
+    for (let i = 0; i < n; i++) {
+        scores[i] /= sum;
+    }
+    return scores;
+};
+
 function App() {
     const [images, setImages] = useState(IMAGES);
-    // const hasSelected = images.some((image) => image.selected);
+    const [scores, setScores] = useState({});
 
     const handleSelect = (index) => {
         const nextImages = images.map((image, i) =>
@@ -92,7 +124,7 @@ function App() {
         setImages(nextImages);
     };
 
-    const handleImageUpload = (images) => {
+    const handleUpload = (images) => {
         const nextImages = images.map((base64ImageData, index) =>
             // eslint-disable-next-line jsx-a11y/img-redundant-alt
             ({
@@ -102,6 +134,8 @@ function App() {
             })
         );
         setImages(nextImages);
+        const dummyScores = dummyScore(7);
+        setScores(dummyScores);
     };
 
     // const handleSelectAllClick = () => {
@@ -124,11 +158,14 @@ function App() {
                 <Row>
                     <Col xs="6">
                         <h2>Upload</h2>
-                        <ImageUpload onImageUpload={handleImageUpload} />
+                        <Upload onUpload={handleUpload} />
                     </Col>
                     <Col xs="6">
                         <h2>Gallery</h2>
                         <Gallery images={images} onSelect={handleSelect} />
+                        {Object.keys(scores).length !== 0 && (
+                            <BarChart inputData={scores} />
+                        )}
                     </Col>
                 </Row>
             </Container>
