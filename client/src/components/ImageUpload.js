@@ -5,7 +5,6 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import RangeSlider from "react-bootstrap-range-slider";
 import ShadeSlider from "@uiw/react-color-shade-slider";
 
-
 const ImageUpload = ({ onImageUpload }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectetdImageCount, setSelectedImageCount] = useState(1);
@@ -29,14 +28,11 @@ const ImageUpload = ({ onImageUpload }) => {
                 "http://localhost:3000/upload",
                 document
             );
-            console.log("response",response);
+            console.log("response", response);
+            onImageUpload(response.data);
         }
-        if (selectedImage) {
-            onImageUpload(selectedImage, selectetdImageCount);
-            // Optionally, you can reset the selected image state
-            setSelectedImage(null);
-            setSelectedImageCount(1);
-        }
+        setSelectedImage(null);
+        setSelectedImageCount(1);
     };
 
     useEffect(() => {
@@ -148,7 +144,6 @@ const ImageUpload = ({ onImageUpload }) => {
                 Upload
             </Button>
         </Form>
-        
     );
 };
 
