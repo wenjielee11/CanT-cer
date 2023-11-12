@@ -65,6 +65,7 @@ const ImageUpload = ({ onImageUpload }) => {
             image: selectedImage,
             imageName: imageName,
             base64: base64,
+            slider: selectedTone
         });
         //const postReq = {"count": selectetdImageCount, "image":selectedImage,"imageName":imageName,"base64":base64};
         //console.log(postReq);
