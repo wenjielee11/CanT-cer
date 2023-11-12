@@ -1,22 +1,38 @@
 // src/components/ImageUpload.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
+
 
 const ImageUpload = ({ onImageUpload }) => {
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectetdImageCount, setSelectedImageCount] = useState(1);
     const [imageName, setImageName] = useState(null);
-    const [document, setDocument] = useState([])
+    const [document, setDocument] = useState(null)
     const [base64, setBase64] = useState(null);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         getBase64(file).then(base64Output => {
             setBase64(base64Output);
           })
-        console.log(file)
         setImageName(file.name);
         setSelectedImage(file);
     };
+
+    const helperFn = async() => {
+        if (document!=null){
+            let response = await axios.post("http://localhost:3000/upload",document);
+        }
+        if (selectedImage) {
+            onImageUpload(selectedImage, selectetdImageCount);
+            // Optionally, you can reset the selected image state
+            setSelectedImage(null);
+            setSelectedImageCount(1);
+        }
+    }
+
+    useEffect(() => {
+        helperFn();
+    }, [document]);
 
     const handleInputs = (e) => {
         setSelectedImageCount(e.target.value);
@@ -30,20 +46,14 @@ const ImageUpload = ({ onImageUpload }) => {
          });
       }
     const handleUpload = async () => {
-        setDocument(document.concat({
+        setDocument({
             image: selectedImage,
             imageName: imageName,
             base64: base64
-        }))
+        })
         //const postReq = {"count": selectetdImageCount, "image":selectedImage,"imageName":imageName,"base64":base64};
         //console.log(postReq);
-        let response = await axios.post("http://localhost:3000/upload",document);
-        if (selectedImage) {
-            onImageUpload(selectedImage, selectetdImageCount);
-            // Optionally, you can reset the selected image state
-            setSelectedImage(null);
-            setSelectedImageCount(1);
-        }
+        
     };
 
 
