@@ -19,13 +19,12 @@ async function generateImage(path, count){
 
 
 app.post("/upload", async (req,res)=>{
-    console.log(req)
-    const imgName = req.body[0].imageName;
+    const imgName = req.body.imageName;
     const document = req.body;
-    let buffer = Buffer.from(document[0].base64.split(",").pop(), "base64")
+    let buffer = Buffer.from(document.base64.split(",").pop(), "base64")
     //Write image to file
     fs.writeFile(`${process.cwd()}/server/images/user/${imgName}.jpg`, buffer, (err) => { if (err) { console.log(err) } })
-    const path = `/images/user/${imgName}.jpg`
+    const path = `/images/user/${imgName}`
     try{
         const resp = await generateImage(path, count);
         res.sendFile(resp);
