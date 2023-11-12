@@ -1,9 +1,10 @@
 // import logo from "./logo.svg";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { Gallery } from "react-grid-gallery";
 import "./App.css";
+import ImageUpload from "./components/ImageUpload";
 import Header from "./components/Header";
-import Dashboard from "./components/Dashboard";
+import { Row, Col, Container } from "react-bootstrap";
 
 const IMAGES = [
     // {
@@ -80,68 +81,7 @@ const IMAGES = [
 
 function App() {
     const [images, setImages] = useState(IMAGES);
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [selectetdImageCount, setSelectedImageCount] = useState(1);
-    const [selectedTone, setSelectedTone] = useState(0);
-    const [hsva, setHsva] = useState({ h: 0, s: 0, v: 100, a: 1 });
-    const [imageName, setImageName] = useState(null);
-    const [document, setDocument] = useState(null);
-    const [base64, setBase64] = useState(null);
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        getBase64(file).then((base64Output) => {
-            setBase64(base64Output);
-        });
-        setImageName(file.name);
-        setSelectedImage(file);
-    };
-
-    const helperFn = async () => {
-        if (document != null) {
-            let response = await axios.post(
-                "http://localhost:3000/upload",
-                document
-            );
-        }
-        if (selectedImage) {
-            onImageUpload(selectedImage, selectetdImageCount);
-            // Optionally, you can reset the selected image state
-            setSelectedImage(null);
-            setSelectedImageCount(1);
-        }
-    };
-
-    useEffect(() => {
-        helperFn();
-    }, [document]);
-
-    const handleInputs = (e) => {
-        setSelectedImageCount(e.target.value);
-    };
-
-    const handleTones = (newShade) => {
-        setHsva({ ...hsva, ...newShade });
-        setSelectedTone((100 - newShade.v) / 100);
-    };
-
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-            reader.readAsDataURL(file);
-        });
-    };
-    const handleUpload = async () => {
-        setDocument({
-            image: selectedImage,
-            imageName: imageName,
-            base64: base64,
-        });
-        //const postReq = {"count": selectetdImageCount, "image":selectedImage,"imageName":imageName,"base64":base64};
-        //console.log(postReq);
-    };
+    // const hasSelected = images.some((image) => image.selected);
 
     const handleSelect = (index) => {
         const nextImages = images.map((image, i) =>
@@ -180,7 +120,23 @@ function App() {
     return (
         <div className="App">
             <Header />
-            <Dashboard {...{ images, handleSelect, handleImageUpload }} />
+            {/* <div className="p-t-1 p-b-1">
+                <button onClick={handleSelectAllClick}>
+                    {hasSelected ? "Clear selection" : "Select all"}
+                </button>
+            </div> */}
+            <Container>
+                <Row>
+                    <Col xs="6">
+                        <h2>Upload</h2>
+                        <ImageUpload onImageUpload={handleImageUpload} />
+                    </Col>
+                    <Col xs="6">
+                        <h2>Gallery</h2>
+                        <Gallery images={images} onSelect={handleSelect} />
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 }
