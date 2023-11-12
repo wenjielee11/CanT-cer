@@ -92,20 +92,15 @@ function App() {
         setImages(nextImages);
     };
 
-    const handleImageUpload = (image, count) => {
-        console.log(image);
-        let nextImages = [...images];
-        while (count--) {
-            nextImages = nextImages.concat([
-                {
-                    ...image,
-                    src: URL.createObjectURL(image),
-                    width: 200,
-                    height: 150,
-                    isSelected: false,
-                },
-            ]);
-        }
+    const handleImageUpload = (images) => {
+        const nextImages = images.map((base64ImageData, index) =>
+            // eslint-disable-next-line jsx-a11y/img-redundant-alt
+            ({
+                key: index,
+                src: `data:image/jpeg;base64,${base64ImageData}`,
+                alt: `Image ${index}`,
+            })
+        );
         setImages(nextImages);
     };
 
