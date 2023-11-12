@@ -131,15 +131,17 @@ function App() {
             setScores({});
             return;
         }
-        const images = [data.predicted_image, data.masked_image];
-        const nextImages = images.map((base64ImageData, index) =>
-            // eslint-disable-next-line jsx-a11y/img-redundant-alt
-            ({
-                key: index,
-                src: `data:image/jpeg;base64,${base64ImageData}`,
-                alt: `Image ${index}`,
-                title: (index == 0 ? "Predicted" : "Masked") + " Image",
-            })
+        const newImages = [data.predicted_image];
+        const nextImages = images.concat(
+            newImages.map((base64ImageData, index) =>
+                // eslint-disable-next-line jsx-a11y/img-redundant-alt
+                ({
+                    key: index,
+                    src: `data:image/jpeg;base64,${base64ImageData}`,
+                    alt: `Image ${index}`,
+                    // title: (index == 0 ? "Predicted" : "Masked") + " Image",
+                })
+            )
         );
         setImages(nextImages);
         const nextScores = data.diagnosis_score;

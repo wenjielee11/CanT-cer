@@ -5,9 +5,11 @@ function ImageCard({ image }) {
     return (
         <Card>
             <Card.Img variant="top" src={image.src} />
-            <Card.Body>
-                <Card.Title>{image.title}</Card.Title>
-            </Card.Body>
+            {image.title && (
+                <Card.Body>
+                    <Card.Title>{image.title}</Card.Title>
+                </Card.Body>
+            )}
         </Card>
     );
 }

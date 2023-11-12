@@ -4,7 +4,7 @@ import ImageCard from "./ImageCard";
 
 function ImageGallery({ images }) {
     return (
-        <Container>
+        <Container className="outputsContainer">
             <Row>
                 {images.map((image, index) => (
                     <Col md={6} key={index} className="mb-4">

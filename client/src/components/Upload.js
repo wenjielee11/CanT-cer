@@ -1,12 +1,13 @@
 // src/components/ImageUpload.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Modal } from "react-bootstrap";
 import RangeSlider from "react-bootstrap-range-slider";
 import ShadeSlider from "@uiw/react-color-shade-slider";
 import ImageCard from "./ImageCard";
 
 const Upload = ({ onUpload }) => {
+    const [showModal, setShowModal] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
     const [selectedTone, setSelectedTone] = useState(0);
     const [hsva, setHsva] = useState({ h: 0, s: 0, v: 100, a: 1 });
@@ -15,6 +16,9 @@ const Upload = ({ onUpload }) => {
     const [base64, setBase64] = useState(null);
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        if (!file) {
+            return;
+        }
         getBase64(file).then((base64Output) => {
             setBase64(base64Output);
         });
@@ -25,12 +29,14 @@ const Upload = ({ onUpload }) => {
 
     const helperFn = async () => {
         if (document != null) {
+            setShowModal(true);
             let response = await axios.post(
                 "http://localhost:3000/upload",
                 document
             );
             console.log("response", response);
             onUpload(response.data);
+            setShowModal(false);
         }
     };
 
@@ -126,6 +132,14 @@ const Upload = ({ onUpload }) => {
                 <Button variant="primary" onClick={handleUpload}>
                     Analyze Image
                 </Button>
+                <Modal
+                    show={showModal}
+                    onHide={() => setShowModal(false)}
+                    backdrop="static"
+                    keyboard={false}
+                >
+                    <Modal.Body>Analyzing your image...</Modal.Body>
+                </Modal>
             </Form.Group>
         </Form>
     );
