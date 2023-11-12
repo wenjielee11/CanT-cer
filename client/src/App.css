@@ -9,3 +9,8 @@ h1 {
 .container {
     padding-top: 20px;
 }
+
+.outputsContainer {
+    max-height: 600px;
+    overflow-y: auto;
+}
