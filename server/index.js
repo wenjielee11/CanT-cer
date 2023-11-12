@@ -1,20 +1,27 @@
 const express = require("express");
 const fs = require("fs");
 const app = express();
-const port = 2023;
+const path = require("path");
+
 const axios = require("axios");
 const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.static("./build"));
+const port = process.env.PORT || 2023;
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(`${process.cwd()}` + "/build/index.html"));
+});
 
 async function generateImage(buffer, slider) {
     // Generates 6 images
     //  curl -H "Content-Type: application/json" -d '{ "image":"89898998989AAA", "slider": "0.1"}' http://004d-34-125-191-15.ngrok-free.app/6969
     const request = { image: buffer, slider: slider };
     const resp = await axios.post(
-        "http://a765-34-125-191-15.ngrok-free.app/6969",
+        "http://a765-34-125-191-15.ngrok-free.app//6969",
         request
     );
     return resp;
