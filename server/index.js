@@ -16,12 +16,12 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(`${process.cwd()}` + "/build/index.html"));
 });
 
-async function generateImage(buffer, slider) {
+async function generateImage(buffer, slider, endpoint) {
     // Generates 6 images
     //  curl -H "Content-Type: application/json" -d '{ "image":"89898998989AAA", "slider": "0.1"}' http://004d-34-125-191-15.ngrok-free.app/6969
     const request = { image: buffer, slider: slider };
     const resp = await axios.post(
-        "http://a765-34-125-191-15.ngrok-free.app//6969",
+        `http://8f89-34-125-191-15.ngrok-free.app/${endpoint}`,
         request
     );
     return resp;
@@ -49,7 +49,7 @@ app.post("/upload", async (req, res) => {
     );
     const path = `/images/user/${imgName}`;
     try {
-        const resp = await generateImage(buffer, slider);
+        const resp = await generateImage(buffer, slider, 1111);
         res.send(resp.data);
     } catch (err) {
         console.log(err);
