@@ -24,7 +24,7 @@ const Upload = ({ onUpload }) => {
     const helperFn = async () => {
         if (document != null) {
             let response = await axios.post(
-                "http://localhost:3000/upload",
+                "https://plated-hearth-404908.uc.r.appspot.com/upload",
                 document
             );
             console.log("response", response);

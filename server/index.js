@@ -1,13 +1,21 @@
 const express = require("express");
 const fs = require("fs");
 const app = express();
-const port = 2023;
+const path = require('path');
+
 const axios = require("axios");
 const cors = require("cors");
 const multer = require("multer");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.static(path.join(__dirname, 'build')));
+const port = process.env.PORT || 2023;
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/build/index.html'));
+  });
+  
 
 async function generateImage(buffer, slider) {
     // Generates 6 images
