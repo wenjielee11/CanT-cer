@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Row, Col, Button, Modal } from "react-bootstrap";
-import RangeSlider from "react-bootstrap-range-slider";
 import ShadeSlider from "@uiw/react-color-shade-slider";
 import ImageCard from "./ImageCard";
 
@@ -60,6 +59,9 @@ const Upload = ({ onUpload }) => {
         });
     };
     const handleUpload = async () => {
+        if (!selectedImage) {
+            return;
+        }
         setDocument({
             image: selectedImage,
             imageName: imageName,
