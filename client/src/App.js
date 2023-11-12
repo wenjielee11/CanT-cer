@@ -124,7 +124,8 @@ function App() {
         setImages(nextImages);
     };
 
-    const handleUpload = (images) => {
+    const handleUpload = (data) => {
+        const images = [data.predicted_image, data.masked_image]
         const nextImages = images.map((base64ImageData, index) =>
             // eslint-disable-next-line jsx-a11y/img-redundant-alt
             ({
