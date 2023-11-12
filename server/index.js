@@ -13,7 +13,7 @@ async function generateImage(buffer, slider){
     // Generates 6 images
     //  curl -H "Content-Type: application/json" -d '{ "image":"89898998989AAA", "slider": "0.1"}' http://004d-34-125-191-15.ngrok-free.app/6969
     const request = {image: buffer, slider: slider}
-    const resp = await axios.post("http://6c91-34-125-191-15.ngrok-free.app/6969",request)
+    const resp = await axios.post("http://344f-34-125-191-15.ngrok-free.app/6969",request)
     return resp;
 }
 
