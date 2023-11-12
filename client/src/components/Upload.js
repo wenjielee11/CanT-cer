@@ -6,6 +6,8 @@ import RangeSlider from "react-bootstrap-range-slider";
 import ShadeSlider from "@uiw/react-color-shade-slider";
 import ImageCard from "./ImageCard";
 
+const BASE_URL = "https://localhost:3000";
+
 const Upload = ({ onUpload }) => {
     const [showModal, setShowModal] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -31,7 +33,7 @@ const Upload = ({ onUpload }) => {
         if (document != null) {
             setShowModal(true);
             let response = await axios.post(
-                "https://plated-hearth-404908.uc.r.appspot.com/upload",
+                "http://localhost:3000//upload",
                 document
             );
             console.log("response", response);
