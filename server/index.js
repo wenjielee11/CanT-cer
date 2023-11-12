@@ -9,6 +9,7 @@ const multer = require("multer");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ limit: "50mb" }));
+app.use(express.static('./build'))
 const port = process.env.PORT || 2023;
 
 app.get('*', (req, res) => {
