@@ -32,9 +32,14 @@ For the classification aspect of our website, we've utilized the HAM10000 datase
 
 Our segmentation model is a crucial component of our website, and it's been finely honed using the dataset from ISIC 2018 Task 1: Lesion Segmentation. We've chosen a sophisticated approach by fine-tuning a pre-trained U-Net model, renowned for its efficacy in medical image segmentation. To optimize its performance, we've employed Dice Loss as our training criterion, focusing on achieving high accuracy in lesion boundary detection. This training was carried out on Kaggle's robust platform, utilizing the powerful Nvidia P100 GPUs, which are well-suited for handling detailed image processing tasks. Our model's key feature is its ability to accurately delineate the contour of the segmentation mask, which is then superimposed onto the original image for a clear and precise representation.
 
+![image](https://media.discordapp.net/attachments/1172946769223618682/1173321328711979059/image.png?ex=656387a4&is=655112a4&hm=c33d1e561b90bcc85e2a5f1c6fa0d258d6e5079df82e496f770dd3a9b6b4490b&=&width=2160&height=662)
+
 ### 2.3 Style Transfer Model
 
 Our style transfer model stands as a centerpiece in our technological suite, offering a unique and powerful capability to adjust skin tones in images. This model builds upon a style/content encoder that has been pre-trained on a vast dataset, ensuring a robust foundation for capturing and replicating various skin tones. What's particularly noteworthy about our approach is that it's entirely unsupervised, showcasing our commitment to innovation in AI methodologies. To tailor this model specifically for our objective, we've fine-tuned it using a selection of dark skin samples. This fine-tuning enhances the model's ability to handle a diverse range of skin tones with greater accuracy. A standout feature of our model is the flexibility to mix styles – it can interpolate between two distinct styles, offering a seamless blend of skin tones. This is crucial for our work, as it provides the control needed to accurately represent different skin tones. We've incorporated two templates into the model – one representing dark skin and the other light skin. These templates serve as reference points, enabling the model to effectively vary the skin tone in the images it processes. The result is a tool that not only enhances the diversity of our dataset but does so with a high degree of accuracy and realism.
+
+![image](https://media.discordapp.net/attachments/1172946769223618682/1173321119386837092/image.png?ex=65638772&is=65511272&hm=308f3a8b7ccffb93f31aaef8de9cc7217b55b657e4f95858c7575a8cb24396fb&=&width=2081&height=1106)
+
 
 # Challenges we ran into
 
