@@ -8,12 +8,14 @@ const BarChart = ({ inputData }) => {
             {
                 label: "Confidence Score",
                 data: Object.values(inputData),
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgba(255, 99, 132, 0.5)",
+                backgroundColor: "rgba(75, 192, 192, 0.2)", // Example of a softer color
+                borderColor: "rgba(75, 192, 192, 1)", // Matching border color
+                borderWidth: 1,
+                hoverBackgroundColor: "rgba(75, 192, 192, 0.4)", // Hover state color
+                hoverBorderColor: "rgba(75, 192, 192, 1)", // Hover state border color
             },
         ],
     };
-
     const options = {
         indexAxis: "y",
         elements: {
@@ -24,11 +26,39 @@ const BarChart = ({ inputData }) => {
         responsive: true,
         plugins: {
             legend: {
-                position: "right",
+                position: "top",
+                labels: {
+                    boxWidth: 20,
+                    padding: 20,
+                    font: {
+                        size: 14,
+                    },
+                },
             },
             title: {
                 display: true,
-                text: "Chart.js Horizontal Bar Chart",
+                text: "Diagnosis Result",
+                font: {
+                    size: 18,
+                },
+            },
+        },
+        scales: {
+            x: {
+                grid: {
+                    color: "rgba(200, 200, 200, 0.8)",
+                },
+                ticks: {
+                    color: "#000", // Tick labels color
+                },
+            },
+            y: {
+                grid: {
+                    color: "rgba(200, 200, 200, 0.8)",
+                },
+                ticks: {
+                    color: "#000", // Tick labels color
+                },
             },
         },
     };

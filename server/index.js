@@ -12,9 +12,9 @@ app.use(bodyParser.json({ limit: "50mb" }));
 async function generateImage(buffer, slider) {
     // Generates 6 images
     //  curl -H "Content-Type: application/json" -d '{ "image":"89898998989AAA", "slider": "0.1"}' http://004d-34-125-191-15.ngrok-free.app/6969
-    const request = { "image": buffer, "slider": slider };
+    const request = { image: buffer, slider: slider };
     const resp = await axios.post(
-        "http://70f7-34-125-191-15.ngrok-free.app/6969",
+        "http://a765-34-125-191-15.ngrok-free.app/6969",
         request
     );
     return resp;

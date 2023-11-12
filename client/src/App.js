@@ -1,10 +1,11 @@
 // import logo from "./logo.svg";
 import { useState } from "react";
 import { Gallery } from "react-grid-gallery";
+import { Row, Col, Container } from "react-bootstrap";
 import "./App.css";
 import Upload from "./components/Upload";
 import Header from "./components/Header";
-import { Row, Col, Container } from "react-bootstrap";
+import ImageGallery from "./components/ImageGallery";
 import BarChart from "./components/BarChart";
 import {
     Chart as ChartJS,
@@ -112,7 +113,7 @@ const dummyScore = (n) => {
 };
 
 function App() {
-    const [images, setImages] = useState(IMAGES);
+    const [images, setImages] = useState([]);
     const [scores, setScores] = useState({});
 
     const handleSelect = (index) => {
@@ -125,18 +126,24 @@ function App() {
     };
 
     const handleUpload = (data) => {
-        const images = [data.predicted_image, data.masked_image]
+        if (data === null) {
+            setImages([]);
+            setScores({});
+            return;
+        }
+        const images = [data.predicted_image, data.masked_image];
         const nextImages = images.map((base64ImageData, index) =>
             // eslint-disable-next-line jsx-a11y/img-redundant-alt
             ({
                 key: index,
                 src: `data:image/jpeg;base64,${base64ImageData}`,
                 alt: `Image ${index}`,
+                title: (index == 0 ? "Predicted" : "Masked") + " Image",
             })
         );
         setImages(nextImages);
-        const dummyScores = dummyScore(7);
-        setScores(dummyScores);
+        const nextScores = data.diagnosis_score;
+        setScores(nextScores);
     };
 
     // const handleSelectAllClick = () => {
@@ -157,13 +164,13 @@ function App() {
             </div> */}
             <Container>
                 <Row>
-                    <Col xs="6">
-                        <h2>Upload</h2>
+                    <Col>
+                        <h1>Upload Images</h1>
                         <Upload onUpload={handleUpload} />
                     </Col>
-                    <Col xs="6">
-                        <h2>Gallery</h2>
-                        <Gallery images={images} onSelect={handleSelect} />
+                    <Col>
+                        <h1>Results</h1>
+                        <ImageGallery images={images} />
                         {Object.keys(scores).length !== 0 && (
                             <BarChart inputData={scores} />
                         )}

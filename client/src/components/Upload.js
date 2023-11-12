@@ -4,6 +4,7 @@ import axios from "axios";
 import { Form, Row, Col, Button } from "react-bootstrap";
 import RangeSlider from "react-bootstrap-range-slider";
 import ShadeSlider from "@uiw/react-color-shade-slider";
+import ImageCard from "./ImageCard";
 
 const Upload = ({ onUpload }) => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -19,6 +20,7 @@ const Upload = ({ onUpload }) => {
         });
         setImageName(file.name);
         setSelectedImage(file);
+        onUpload(null);
     };
 
     const helperFn = async () => {
@@ -30,7 +32,6 @@ const Upload = ({ onUpload }) => {
             console.log("response", response);
             onUpload(response.data);
         }
-        setSelectedImage(null);
     };
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const Upload = ({ onUpload }) => {
             image: selectedImage,
             imageName: imageName,
             base64: base64,
-            slider: selectedTone
+            slider: selectedTone,
         });
         //const postReq = {"count": selectedImageCount, "image":selectedImage,"imageName":imageName,"base64":base64};
         //console.log(postReq);
@@ -73,14 +74,15 @@ const Upload = ({ onUpload }) => {
             </Form.Group>
             <Form.Group className="mb-3">
                 {selectedImage && (
-                    <div>
-                        <img
-                            src={URL.createObjectURL(selectedImage)}
-                            alt=""
-                            width={300}
-                            height={225}
-                        />
-                    </div>
+                    <ImageCard
+                        image={{
+                            src: URL.createObjectURL(selectedImage),
+                            width: 300,
+                            height: 225,
+                            title: "Input Image",
+                            alt: "",
+                        }}
+                    />
                 )}
             </Form.Group>
             {/* <Form.Group controlId="toneSlider" className="mb-3">
@@ -101,21 +103,30 @@ const Upload = ({ onUpload }) => {
             </Form.Group> */}
             <Form.Group controlId="toneSlider" className="mb-3">
                 <Row className="align-items-center">
-                    <Col xs="6">
-                        <Form.Label>Desired skin: </Form.Label>
+                    <Col xs="4">
+                        <Form.Label>Skin tone: </Form.Label>
                     </Col>
-                    <Col xs="6">
-                        <ShadeSlider hsva={hsva} onChange={handleTones} />
+                    <Col xs="8">
+                        <ShadeSlider
+                            hsva={hsva}
+                            onChange={handleTones}
+                            width="25em"
+                        />
                     </Col>
-                    <Col xs="1">
-                        {selectedTone}
-                        {/* <Form.Control value={selectedImageCount} /> */}
-                    </Col>
+                    {/* <Col xs="1"> */}
+                    {/* {selectedTone} */}
+                    {/* <Form.Control value={selectedImageCount} /> */}
+                    {/* </Col> */}
                 </Row>
             </Form.Group>
-            <Button variant="primary" onClick={handleUpload}>
-                Upload
-            </Button>
+            <Form.Group
+                controlId="uploadBtn"
+                className="d-flex justify-content-center"
+            >
+                <Button variant="primary" onClick={handleUpload}>
+                    Analyze Image
+                </Button>
+            </Form.Group>
         </Form>
     );
 };
