@@ -5,7 +5,7 @@ import { CheckCircleFill } from "react-bootstrap-icons";
 function ImageCard({ image, onSelect }) {
     return (
         <Card className={typeof onSelect === "function" ? "gallery-card" : ""}>
-            <div className={image.isSelected ? "active-icon" : "d-none"}>
+            <div className={image.isSelected ? "shadow active-icon" : "d-none"}>
                 <CheckCircleFill size={24} color="white" />
             </div>
             <Card.Img
