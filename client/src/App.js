@@ -6,53 +6,77 @@ import ImageUpload from "./components/ImageUpload";
 import Header from "./components/Header";
 import { Row, Col, Container } from "react-bootstrap";
 
-// import ImageGallery from "./components/ImageGallery";
-// import img1 from "./assets/img1.jpg";
-
-// const importAll = (context) => context.keys().map(context);
-
-// const imagesContext = require.context(
-//     "../public/assets",
-//     false,
-//     /\.(png|jpe?g|svg)$/
-// );
-
 const IMAGES = [
-    // {
-    //     src: "/assets/img1.jpg",
-    //     alt: "Image 1",
-    //     isSelected: false,
-    //     width: 200,
-    //     height: 150,
-    // },
-    // {
-    //     src: "/assets/img2.jpg",
-    //     alt: "Image 2",
-    //     isSelected: false,
-    //     width: 200,
-    //     height: 150,
-    // },
-    // {
-    //     src: "/assets/img3.jpg",
-    //     alt: "Image 3",
-    //     isSelected: false,
-    //     width: 200,
-    //     height: 150,
-    // },
-    // {
-    //     src: "/assets/img4.jpg",
-    //     alt: "Image 4",
-    //     isSelected: false,
-    //     width: 200,
-    //     height: 150,
-    // },
-    // {
-    //     src: "/assets/img5.jpg",
-    //     alt: "Image 5",
-    //     isSelected: false,
-    //     width: 200,
-    //     height: 150,
-    // },
+    {
+        src: "/logo192.png",
+        alt: "Image 1",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 2",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 3",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 4",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 5",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 1",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 2",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 3",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 4",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
+    {
+        src: "/logo192.png",
+        alt: "Image 5",
+        isSelected: false,
+        width: 200,
+        height: 150,
+    },
 ];
 
 function App() {
@@ -103,11 +127,11 @@ function App() {
             </div> */}
             <Container>
                 <Row>
-                    <Col>
+                    <Col xs="6">
                         <h2>Upload</h2>
                         <ImageUpload onImageUpload={handleImageUpload} />
                     </Col>
-                    <Col>
+                    <Col xs="6">
                         <h2>Gallery</h2>
                         <Gallery images={images} onSelect={handleSelect} />
                     </Col>
