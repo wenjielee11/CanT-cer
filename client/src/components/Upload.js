@@ -32,11 +32,7 @@ const Upload = ({ onUpload }) => {
         if (document != null) {
             setShowModal(true);
             let response = await axios.post(
-<<<<<<< HEAD
                 "http://localhost:3000//upload",
-=======
-                "http://localhost:3000/upload",
->>>>>>> 54397afae6d07082b6d76eec90f872ad9c94bfa4
                 document
             );
             console.log("response", response);
