@@ -3,7 +3,7 @@
 Pioneering Skin Cancer Data Generation to Combat AI Bias.
 
 # Check out our website!
-(https://plated-hearth-404908.uc.r.appspot.com/)
+https://plated-hearth-404908.uc.r.appspot.com/
 
 # Inspiration
 
