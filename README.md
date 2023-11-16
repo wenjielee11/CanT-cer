@@ -1,6 +1,7 @@
 # CANT-cer
 
 Pioneering Skin Cancer Data Generation to Combat AI Bias.
+### Awarded [MLH] Best use of Google Cloud in MadHacks Fall 2023: https://devpost.com/software/cant-cer
 
 # Check out our website!
 https://plated-hearth-404908.uc.r.appspot.com/
